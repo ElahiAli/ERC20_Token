@@ -3,6 +3,9 @@ require("solidity-coverage");
 require("hardhat-deploy");
 require("dotenv").config();
 
+const PRIVATE_KEY = process.env.PRIVATE_KEY || "0xkey";
+const SEPOLIA_RPC_URL = process.env.SEPOLIA_RPC_URL;
+
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
   solidity: {
@@ -15,6 +18,12 @@ module.exports = {
     localhost: {
       chainId: 31337,
       url: "",
+    },
+    sepolia: {
+      url: SEPOLIA_RPC_URL,
+      accounts: [PRIVATE_KEY],
+      chainId: 11155111,
+      blockConfirmations: 6,
     },
   },
   namedAccounts: {
