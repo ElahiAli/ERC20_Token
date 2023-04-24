@@ -3,7 +3,7 @@ pragma solidity 0.8.7;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
-contract myToken is IERC20 {
+contract MyToken is IERC20 {
   string private name;
   string private symbol;
   uint private _totalSupply;
