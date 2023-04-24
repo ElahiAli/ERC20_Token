@@ -1,20 +1,20 @@
 const { run } = require("hardhat");
 
-async function verify(contractAddress, args) {
-  console.log("Verifying....");
+const verify = async (contractAddress, args) => {
+  console.log("Verifying contract...");
   try {
     await run("verify:verify", {
       address: contractAddress,
-      constructorArgumets: args,
+      constructorArguments: args,
     });
-  } catch (error) {
-    if (error.message.toLowerCase().includes("already verified")) {
-      console.log("Already verified.");
+  } catch (e) {
+    if (e.message.toLowerCase().includes("already verified")) {
+      console.log("Already verified!");
     } else {
-      console.log(error);
+      console.log(e);
     }
   }
-}
+};
 
 module.exports = {
   verify,
