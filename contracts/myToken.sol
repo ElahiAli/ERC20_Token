@@ -11,12 +11,12 @@ contract MyToken is IERC20 {
   mapping(address => uint256) private balances;
   mapping(address => mapping(address => uint256)) allowed;
 
-  constructor(address _walletAddress) {
+  constructor() {
     name = "MyToken";
     symbol = "MT";
     _totalSupply = 100000;
-    balances[_walletAddress] = _totalSupply;
-    emit Transfer(address(0), _walletAddress, _totalSupply);
+    balances[msg.sender] = _totalSupply;
+    emit Transfer(address(0), msg.sender, _totalSupply);
   }
 
   function transfer(
@@ -69,5 +69,13 @@ contract MyToken is IERC20 {
 
   function totalSupply() external view override returns (uint256) {
     return (_totalSupply - balances[address(0)]);
+  }
+
+  function getName() public view returns (string memory) {
+    return name;
+  }
+
+  function getSymbol() public view returns (string memory) {
+    return symbol;
   }
 }
