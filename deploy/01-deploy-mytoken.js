@@ -1,9 +1,6 @@
 const { network } = require("hardhat");
 const { verify } = require("../helper-function");
-const {
-  walletAddress,
-  developmentChains,
-} = require("../helper-hardhat-config");
+const { developmentChains } = require("../helper-hardhat-config");
 
 module.exports = async function ({ deployments, getNamedAccounts }) {
   const { deploy, log } = deployments;
@@ -13,13 +10,13 @@ module.exports = async function ({ deployments, getNamedAccounts }) {
   const myToken = await deploy("MyToken", {
     from: deployer,
     log: true,
-    args: [walletAddress],
+    args: [],
   });
   log("MyToken Deployed!");
 
-  if (!developmentChains.includes(network.name)) {
-    await verify(myToken.address, [walletAddress]);
-  }
+  // if (!developmentChains.includes(network.name)) {
+  //   await verify(myToken.address, [walletAddress]);
+  // }
 };
 
 module.exports.tags = ["all", "mytoken"];
