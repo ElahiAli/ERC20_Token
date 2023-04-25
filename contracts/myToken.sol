@@ -48,8 +48,8 @@ contract MyToken is IERC20 {
     uint256 amount
   ) public override returns (bool) {
     balances[from] = balances[from] - amount;
-    allowed[from][msg.sender] -= amount;
     balances[to] = balances[to] + amount;
+    approve(to, amount);
     emit Transfer(from, to, amount);
     return true;
   }
